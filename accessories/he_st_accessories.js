@@ -226,16 +226,12 @@ function HE_ST_Accessory(platform, group, device, accessory) {
         var inputCsv = that.device.attributes['supportedInputs'];
         const inputs = inputCsv.split(',');
 
-        for (var i = 0; i < inputs.length; i++) {
-            platform.log('supportedInput_' + i + ': ' + inputs[i]);
-        }
-
         var televisionService = that.getaddService(Service.Television, device.name, 'Television');
 
         televisionService.setCharacteristic(Characteristic.ConfiguredName, device.name)
         televisionService.setCharacteristic(Characteristic.SleepDiscoveryMode, Characteristic.SleepDiscoveryMode.ALWAYS_DISCOVERABLE);
         televisionService.setCharacteristic(Characteristic.ActiveIdentifier, 1);
-        televisionService.setCharacteristic(Characteristic.PowerModeSelection, Characteristic.PowerModeSelection.HIDE);
+        televisionService.setCharacteristic(Characteristic.PowerModeSelection, Characteristic.PowerModeSelection.SHOW);
 
         for (var i = 0; i < inputs.length; i++) {
             const inputService = that.accessory.addService(Service.InputSource, device.name + 'input' + i, device.name + 'input' + i);
@@ -243,6 +239,7 @@ function HE_ST_Accessory(platform, group, device, accessory) {
             inputService.setCharacteristic(Characteristic.Identifier, i + 1);
             inputService.setCharacteristic(Characteristic.InputSourceType, Characteristic.InputSourceType.HDMI);
             inputService.setCharacteristic(Characteristic.IsConfigured, Characteristic.IsConfigured.CONFIGURED);
+            inputService.setCharacteristic(Characteristic.CurrentVisibilityState, Characteristic.CurrentVisibilityState.SHOWN);
             televisionService.addLinkedService(inputService);
         }
 
@@ -261,22 +258,27 @@ function HE_ST_Accessory(platform, group, device, accessory) {
             });
         platform.addAttributeUsage('mediaInputSource', device.deviceid, thisCharacteristic);
 
+
+        function delay(t, v) {
+            return new Promise(resolve => setTimeout(resolve, t, v));
+        }
+
         thisCharacteristic = televisionService.getCharacteristic(Characteristic.Active)
             .on('get', function (callback) {
                 var switchValue = that.device.attributes['switch'];
-                platform.log('Get switch: ' + switchValue)
+                // platform.log('Get switch: ' + switchValue)
                 var activeValue = switchValue == 'on' ? Characteristic.Active.ACTIVE : Characteristic.Active.INACTIVE;
                 callback(null, activeValue);
             })
             .on('set', function (value, callback) {
-                //platform.log('Set mediaInputSource: ' + value);
+                //platform.log('Set switch: ' + value);
                 if (value == Characteristic.Active.ACTIVE) {
-                    platform.api.runCommand(device.deviceid, 'on').then(function (resp) { if (callback) callback(null); }).catch(function (err) { if (callback) callback(err); });
-                    //if (callback) { callback(null); }
+                    platform.api.runCommand(device.deviceid, 'on');
+                    if (callback) { callback(null); }
                 }
                 else {
-                    platform.api.runCommand(device.deviceid, 'off').then(function (resp) { if (callback) callback(null); }).catch(function (err) { if (callback) callback(err); });
-                    //if (callback) { callback(null); }
+                    platform.api.runCommand(device.deviceid, 'off'); //.then(function () { platform.log('start delay'); return delay(2000); }).then(function (resp) { platform.log('end delay'); if (callback) callback(null); }).catch(function (err) { if (callback) callback(err); });
+                    if (callback) { callback(null); }
                 }
             });
         platform.addAttributeUsage('switch', device.deviceid, thisCharacteristic);
