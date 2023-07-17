@@ -419,9 +419,9 @@ HE_ST_Platform.prototype = {
         var that = this;
         // that.log('config: ', JSON.stringify(this.config));
         var foundAccessories = [];
-        that.log('Refreshing All Device Data');
+        //that.log('Refreshing All Device Data');
         he_st_api.getDevicesSummary().then(function (myList) {
-            that.log('Received All Device Data');//,  util.inspect(myList, false, null, true));
+            //that.log('Received All Device Data');//,  util.inspect(myList, false, null, true));
             if (that.add_reboot_switch === true) {
                 var rebootDevice = {};
                 rebootDevice.excludedAttributes = ["None"];
