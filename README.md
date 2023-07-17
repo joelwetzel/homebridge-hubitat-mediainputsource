@@ -1,5 +1,7 @@
 # homebridge-hubitat-makerapi
 
+[![npm version](https://badge.fury.io/js/homebridge-hubitat-mediainputsource.svg)](https://badge.fury.io/js/homebridge-hubitat-mediainputsource)
+
 My Hubitat driver for an HDMI switch (https://github.com/joelwetzel/Hubitat-4KMX42-H2A) implements Hubitat's "MediaInputSource" capability.  This capability allows for switching between two different inputs.
 
 Unfortunately, it's not well supported yet.  I don't think it's used very often.  I use this HomeBridge plugin to connect my Hubitat to HomeKit:  https://github.com/danTapps/homebridge-hubitat-makerapi.  Unfortunately, it does not support "MediaInputSource".
