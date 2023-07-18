@@ -21,11 +21,14 @@ My plugin queries Hubitat just like danTapps's plugin, but it ONLY looks for Hub
 
 Extra installation step:  Television devices have to be published as an "external accessory" in homebridge.  This means they won't be included by default when adding the HomeBridge to your Home app.  The television device has to be added separately.
 
-TODO: Link to the documentation for how to add an external accessory.
+You'll need to open your HomeBridge Status page.  When you restart the HomeBridge, you'll see log lines like:
+>[18/07/2023, 13:23:58] Family Room HDMI Switch D6F0 is running on port 38779.
+>
+>[18/07/2023, 13:23:58] Please add [Family Room HDMI Switch D6F0] manually in Home app. Setup Code: 786-74-406
+
+You can then add the accessory in the home app using that setup code.
 
 Issue:  The Home app on iPhone has a UI bug involving television pickers.  Sometimes, when you turn the power on, the input selector becomes deactivated, and if you oscillate power on and off, the input selector's activation status will always be the opposite of what it should be.  Therefore, I don't really use it directly.  I use the Scenes to control everything.
-
-TODO: Move my installation off of my iMac, onto Raspberry Pi.
 
 
 
