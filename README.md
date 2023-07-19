@@ -1,9 +1,7 @@
 # homebridge-hubitat-makerapi
 
 [![npm version](https://badge.fury.io/js/homebridge-hubitat-mediainputsource.svg)](https://badge.fury.io/js/homebridge-hubitat-mediainputsource)
-![NPM Downloads](https://img.shields.io/npm/dw/:homebridge-hubitat-mediainputsource)
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/homebridge-hubitat-mediainputsource.svg)](https://repology.org/project/homebridge-hubitat-mediainputsource/versions)
+![NPM Downloads](https://img.shields.io/npm/dt/:homebridge-hubitat-mediainputsource)
 
 My Hubitat driver for an HDMI switch (https://github.com/joelwetzel/Hubitat-4KMX42-H2A) implements Hubitat's "MediaInputSource" capability.  This capability allows for switching between two different inputs.
 
