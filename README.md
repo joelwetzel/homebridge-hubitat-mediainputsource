@@ -1,4 +1,4 @@
-# homebridge-hubitat-makerapi
+# Homebridge Plugin - Hubitat MediaInputSources
 
 [![npm version](https://badge.fury.io/js/homebridge-hubitat-mediainputsource.svg)](https://badge.fury.io/js/homebridge-hubitat-mediainputsource)
 ![NPM Downloads](https://img.shields.io/npm/dt/:homebridge-hubitat-mediainputsource)
